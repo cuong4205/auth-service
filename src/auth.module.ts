@@ -4,8 +4,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LocalStrategy } from './strategy/local.strategy';
 import { AuthController } from './auth.controller';
+import { UserClientsModule } from './grpc client/user-client.module';
+import { AuthClientsModule } from './grpc client/auth-client.module';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { UserClientsModule } from './user-client.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UserClientsModule } from './user-client.module';
       inject: [ConfigService],
     }),
     UserClientsModule,
+    AuthClientsModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
